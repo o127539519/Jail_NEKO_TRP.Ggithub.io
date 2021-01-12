@@ -1,1 +1,4867 @@
 
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>快樂的Trpg - 【結團】鹹魚喵的怕黑十八團</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/680728618329964638/31fe348e4a0f4116eed83a3ce495bc96.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">快樂的Trpg</div>
+        <div class="preamble__entry">醫生的地下診所 / 【結團】鹹魚喵的怕黑十八團</div>
+
+
+            <div class="preamble__entry preamble__entry--small">
+Between 10-Jan-21 10:02 AM and 10-Jan-21 02:39 PM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="797646498330443821" id="message-797646498330443821">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">注意事項
+-     此卡跑完怕黑一定要接著跑花葬列車，不然<strong>一定</strong>會爆炸。
+-    為方便統計，擲骰請在 <span class="mention">#擲骰治療法</span> 骰。
+-    描述完畢我會在句尾加上//，沒看見就是我龜速打字中，請耐心等候。
+-    請儘可能使用全形標點。對話可以的話請使用「 」。
+-    最最最最重要的一點，請在句尾加上句號或合適的標點，不加不會怎樣，但加了你可以拯救強迫症醫生。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797646532291592203" id="message-797646532291592203">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">沒問題就開始了</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128076;" title="&#128076;" src="https://twemoji.maxcdn.com/2/72x72/1f44c.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="797646679016603660" id="message-797646679016603660">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">----------------------------------------------------------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797646706933366784" id="message-797646706933366784">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//首先，雖然很突然，但請扣6點SAN</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797646790681165845" id="message-797646790681165845">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">睜開眼，是因為耳邊從某處傳來的座機鈴聲。蛛網般的黑暗在瞬間織滿你的眼眶，你正躺在一張床上，而這個環境於你而言，有點陌生。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="797647339044864030" id="message-797647339044864030">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「欸？這裡是哪裡？我……為什麼會到這裡來？」
+剛清醒的我，尚未理解眼前所發生的事情，只能呆板的環顧四周，並嘗試思索腦中的記憶。//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 10:08 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="797648063778127893" id="message-797648063778127893">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">試著回憶自己為何身處於此的你，回應你的只有洶湧的頭疼。
+
+你環顧四周，發現這裡像是某家旅館的單人間。
+你所面對的牆上掛著扁平的電子鐘，23:30和5:30兩個時間交替閃爍著 。
+在左上角的牆角似乎放了個衣櫃，房間右側有一扇小窗，柔和的光線從此灑入房間，好讓你不至於伸手不見五指。
+左側有一扇門，在床的旁邊有一張小木几，上面放著的座機正「叮鈴鈴」地響著。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="797649095475986523" id="message-797649095475986523">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「嘶……好痛，到底是怎麼回事？還有那個座機……既然會響起就代表有人正試圖聯絡著我吧？難不成是把我帶來這裡的人？」
+看著眼前發出聲響的座機，我一邊自言自語著，一邊忍著頭痛，靠近了座機並接了起來。
+「喂？」//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="797649368361730068" id="message-797649368361730068">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">接起電話，一個稚嫩的嗓音從聽筒中幽幽傳出，帶著來電特有的沙啞回音，「你能過來麼？」男孩說，他的聲音很小卻很急促，「衣櫃裡... 好像有什麼東西... 要出來了.........求求你，來陪陪我，我不敢睡... 這裡好黑...」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797649382362841148" id="message-797649382362841148">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你能想像那是一個瑟瑟發抖的孩子，在床上用毛毯把自己裹成小小的繭，伸出纖細顫抖的手臂，用僅僅攥在手裡的手電筒照射臥室另一角沉默的衣櫃。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="797650554654294036" id="message-797650554654294036">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「嗯……先不論我能不能抵達你在的地方，可以先和我說說你是誰？為什麼會找上我呢？」
+聽見對方顫抖的聲音，雖然腦海馬上就能浮出對面可能會有的景象，但基於我疑似是第一次聽到這個聲音，所以並沒有馬上答應，而是放柔了聲音並提出疑問。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="797650932539064340" id="message-797650932539064340">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「我......我也不知道我是誰。」話筒一側傳來了一絲迷茫。
+
+稚嫩的聲音帶上明顯的哭腔，「就只剩下你了...求求你...我給他們所有人都打過電話...可是他們...」你能隱約聽見無助的啜泣聲。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="797652652238176307" id="message-797652652238176307">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「不知道自己是誰嗎？我知道了！不用擔心，我會過去你那裡一趟的，那麼你可以和我說一下你在的位置嗎？不然我也無從找起你人在哪。」
+對於這個孩子的請託，之於現在的我而言，或許是個找到自己為什麼會來到這個地方的突破口，或許另一方面也是認為孩子是不太會在恐慌的情況下騙人的，所以便決定好接下來的目的地，打算在這通電話結束後，就搜看看有沒有什麼防身物品，立刻來去這個孩子報的地方。//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 10:27 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="797653611181506571" id="message-797653611181506571">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「謝謝你，我在......，我好害怕......求求你.......」電話的另一頭留下一個地址後未待男孩說完，話筒便傳出了忙音。
+你對這個地址略感耳熟。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="797654666996482068" id="message-797654666996482068">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「這個地址……我有去過嗎？怎麼莫名的耳熟？總而言之，為了避免遇到棘手狀況但手上沒工具，先找個東西防身吧……」
+聽到那一頭的電話被卡了之後，我掛斷了電話，一邊在腦海思索著對於這個地址可能存在的記憶，一邊走向了衣櫃，嘗試確認裡頭是否有一些能拿來加減防身的物品。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="797654845515104266" id="message-797654845515104266">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">打開衣櫃，裏頭放了一件稍厚的運動外套，右側口袋好像稍微鼓起來一點。除了外套，你沒有找到其他物品。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="797655582428364820" id="message-797655582428364820">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「只有外套嗎？也是啦，誰會無緣無故的在衣櫃裡放什麼槍之類的玩意。嗯？這件外套的右側口袋似乎有東西……難不成？」
+看著眼前的外套，我不禁的自言自語，並將手伸進那個口袋內，確認讓這個口袋鼓起來的東西為何？//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 10:38 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="797655711499681872" id="message-797655711499681872">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">那是一把銀色的鑰匙，拿在手裏冰冰涼涼的。
+與此同時，你看見有甚麼印在鑰匙上，但當你想要細看時，它便開始扭曲然後消失得無影無蹤。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="797656548863508490" id="message-797656548863508490">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「欸？鑰匙……消失了？！喂喂喂，這可不是什麼好玩的事情啊！不過這件外套……算了帶著好了，如果外頭會冷就能派上用場了。」
+語畢，我便把外套從衣架上拿下，稍微觀察一下大小是否合自己身之後，便嘗試走出這裡，來去尋找那個孩子所說的那個地方。//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 10:43 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="797657105753702471" id="message-797657105753702471">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你覺得這個外套符合你的身材，穿著應該相當暖和。
+
+房間門並沒有上鎖，你打開門，房外是一條不長的走廊，你的房間身處在走廊的盡頭，老舊的天花燈忽明忽暗，散發出微弱的燈光，像是病弱老人的呻吟。
+走廊的另一端似乎是通向一個相對寬闊的空間。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="797657812326809613" id="message-797657812326809613">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">看著眼前的景象，我咂了咂舌。雙腳快速的、安靜的走過這條長廊，前往眼前的另一個空間。//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 10:47 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="797658143161188363" id="message-797658143161188363">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你來到另一端，那是一個類似接待處的地方，小小的空間放置了一張櫃台，對面放了一張兩人沙發和茶几，電子鐘的光芒在昏暗的環境中尤為顯眼，現在顯示的時間為23:45。
+
+旅館大門半掩，寒風在縫隙間流入空間，為這裏增添幾分冷清之感。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="797659206994886666" id="message-797659206994886666">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「快12點了嗎？夜晚出門可不是什麼好孩子行為呢……希望我能在那個地方知道我為何會來到這裡吧……」
+看著眼前冷清的光景並確認了一下目前時間後，我再度邁開腳步並穿上那件外套，打開大門嘗試尋找路人詢問是否知道那個孩子所說的地址。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="797659463863500840" id="message-797659463863500840">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">走出旅館大門，午夜的寒意穿過衣物的纖維貼上你的皮膚，接著是骨髓，在五臟六肺安家。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797659489305100288" id="message-797659489305100288">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">霧中朦朧的，找不到出處的光線似乎將道路融化，卻總有些人影與你擦身而過。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797659509967159306" id="message-797659509967159306">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">他們中的一些會停下，有些卻不會，但無論是男是女，年長還是稚嫩，你都能感覺到一種毛骨悚然的熟悉。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797659534721810442" id="message-797659534721810442">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">然而，除了這種搔撓你咽喉的生冷的親切感外，你什麼都想不起來。
+
+剎那間你覺得自己身處一座幽靈之城，與某些磨滅在記憶深處的亡魂相遇又分別。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797659544682758174" id="message-797659544682758174">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&lt;SC 1/1d3&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797659732776845313" id="message-797659732776845313">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你找人搭話，其中一人停了下來，他面無表情地看著你，眼底除了麻木的鈍感外，還有絲絲絕望的憐憫。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="797660153292914729" id="message-797660153292914729">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「不好意思打擾到您，請問您知道這個地址在哪裡嗎？」
+看著眼前面無表情的人，我快速的報出了那串地址，打算迅速結束這次的對話。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="797660415605473320" id="message-797660415605473320">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">他一言不發地抬起右手指向某個方向，你順著他指的方向看過去，不遠處一棟原本黯淡的房屋在剎那間變得分明卻又立即變得模糊。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 10:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="797660875837145118" id="message-797660875837145118">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「原來在這麼近的地方嗎？我知道了，十分感謝您！」
+語畢，我朝他微微的鞠了躬，並確認他是否有後續其他動作，若沒有就邁開腳步前往那棟房屋。//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 10:59 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="797661373496426556" id="message-797661373496426556">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">他看了你一眼，然後便繼續往前走。
+
+朝向指示的方向走去，你來到了那棟房子前，霧氣如同葬禮上的紗蒙在眼前二層小屋的外牆上。
+你確認門牌，這裏和男孩說的地址吻合。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="797661688475287564" id="message-797661688475287564">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「不好意思打擾了！請問有人在嗎？」
+我敲了敲門，並嘗試轉看看門把是否有鎖。//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 11:03 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="797661909180088331" id="message-797661909180088331">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你禮貌地敲了敲門，久久無人響應。
+轉動門把，門把冰冷且沒有上鎖。//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 11:03 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="797662365508304896" id="message-797662365508304896">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「這可不是什麼好的展開啊……那麼就不好意思了。」
+我將門開啟後，確認了一下房內的景象與架構。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="797662555790114818" id="message-797662555790114818">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">推開大門，在玄關後似乎是一個客廳，因為沒有亮燈，只有從窗戶透入的光線勉強能讓你看到大概的輪廓，要看清的話也許得走近點吧。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="797662922791977011" id="message-797662922791977011">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">我慢慢的走進了屋內，一邊警戒著可能會發生的狀況，一邊嘗試摸索出客廳的大燈開關。//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 11:08 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="797663696959701005" id="message-797663696959701005">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你踩著腳下吱呀作響的地板進入了這間屋子。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797663745341390889" id="message-797663745341390889">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">這裏空無一人，只有牆壁上顯示著時間的電子鐘滴答作響，現在的時間是00：00。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797663765096431628" id="message-797663765096431628">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">客廳左邊靠內有一扇門，接近玄關的右側有一架樓梯。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797663801255264256" id="message-797663801255264256">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你在陰影中摸索，藉著屋外殘喘的光線找到牆壁上吊燈的開關，按下。
+燈亮了，卻僅僅是一小會兒，炸裂開的燈泡碎片在你面前摔的更碎。
+
+與此同時，在光亮的一瞬間，你看見茶几上放著幾枚雞蛋冰。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="797664542535843840" id="message-797664542535843840">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「欸？雞蛋冰？為什麼會有雞蛋冰？不對現在可不是思考這個問題的時候，首先應該要先找到那個孩子才對……」
+我晃了晃頭，嘗試讓思緒與注意力拉回現在應該要做的事情，並悄悄踏出步伐，走向在客廳左邊的那扇門。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="797665058191573032" id="message-797665058191573032">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在你想要重新專注時，一種莫名的衝動在此時爬上你的脊椎，彷彿在催促你坐下，不斷將眼前的美味塞入口中咀嚼吞嚥。</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 11:18 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797665236626440213" id="message-797665236626440213">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//不想順從慾望就&lt;POW&gt;極限成功</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797665787191492620" id="message-797665787191492620">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">似是被控制住般，你無法自控地走到沙發前，坐了下來。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797665804610043966" id="message-797665804610043966">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你的手不期然地伸向了桌上的食物，大腦被慾望所支配，開始大快朵頤。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797665817117589515" id="message-797665817117589515">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">餐點嘗起來要比看上去更好，無論你吃掉了多少，都會有新的出現在餐盤中。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797665853155835955" id="message-797665853155835955">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">.
+淡白的雞蛋冰拿在手裏散發著絲絲涼意，一口咬下，介乎硬冰與冰沙的口感在口中沙沙作響，冰涼之感從咽喉直透身體各處，在冰碎的縫隙中透出香莢蘭與牛奶的甜香，卻非過甜的香精味道，意外地天然且恰到好處。小時候的回憶，長大後的懷念，每一口都是時空旅行，讓你不期然回想起天真爛漫的童年，總能從小事中獲得莫大的滿足，無比質樸、令人嚮往的童年時光。
+.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797665896641331230" id="message-797665896641331230">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你無法自控地不斷將幸福的滋味盡數放入口中。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797665946621444097" id="message-797665946621444097">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">但在你吃的同時，你也感受到了腹痛。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797666009439797338" id="message-797666009439797338">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">剛開始痛覺還很微妙，你並不太在意，但很快就變成銳利的鑽頭在你的身體中肆虐，最終你仿佛看見無數條觸手撕開你的血肉骨骼。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797666053698093107" id="message-797666053698093107">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">然而這種慘狀僅僅是一閃而過的幻覺，然而幻痛卻異常的逼真清晰。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797666130423578644" id="message-797666130423578644">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&lt;SC 1/1d3&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797666216026177536" id="message-797666216026177536">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在幻痛消失後，你想起在你剛進食時，好像隱約想起曾經和誰共享美食與歡笑。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797666236149399552" id="message-797666236149399552">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">然而即便絞盡腦汁也只能在腦海中浮現朦朧的影子，惆悵與不安一次次在你的心頭肆虐，你卻無法得到答案。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="797666646067118080" id="message-797666646067118080">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「咳咳……咳！剛剛到底是發生了什麼事情？還有剛剛在腦海閃過的人……到底是誰？」
+我大口的喘著氣，一邊分散注意力讓這股幻痛快速退散，一邊確認現在的時間為何？//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797666883234824202" id="message-797666883234824202">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//話說我的San值已經下降到瘋狂線了哦</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="797666887772274709" id="message-797666887772274709">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你看向客廳的時鐘，現在的時間為00：15</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797666930579472404" id="message-797666930579472404">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//不用管</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="797667327877185586" id="message-797667327877185586">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「15分鐘嗎？還可以，趕緊去找人……」
+我甩了甩頭，將這股幻痛當作讓自己意志清醒的強化物，重新站起身來慢慢的走向原本預定要去的客廳左側大門。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="797667632240263188" id="message-797667632240263188">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">打開客廳旁的門，在這狹窄的廚房裏，四個人一個挨一個坐在小小的圓桌旁，把手在膝蓋上攤平。
+他們死氣沉沉的看著你，睜圓的眼睛裡是門外路人共有的目光，麻木又叫人心碎。
+他們一動不動看著你。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="797668308392476692" id="message-797668308392476692">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「……不好意思打擾你們了，我接到電話，有個孩子希望我能過來這裡陪他，請問你們知道嗎？」
+看著眼前的景象，我不禁頓了頓呼吸，才把我來到這的原因講了出來，並不自主的觀察起了眼前的人事物。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="797668522675273768" id="message-797668522675273768">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">其中一名女性對你開口，「他在等你。」她對你說：「他很害怕。」</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 11:30 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797668538746798101" id="message-797668538746798101">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&lt;偵察&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797668734574919700" id="message-797668734574919700">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你發現那些冷若冰霜的面孔上似乎真的存在薄薄的浮冰與冰花。
+你幾乎能看到菲薄的皮膚下的貼著肌肉的青色血管，而剛才開口的女人似乎因為嘴唇開合的動作，雙唇撕扯出一條條纖細的血絲。
+此時的你體會到一絲深入骨髓的嚴寒。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="797668855174266881" id="message-797668855174266881">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">我聽聞他說他的櫃子有東西，你們知道他在害怕什麼嗎？//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="797669239182852106" id="message-797669239182852106">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「害怕什麼？」你問道。
+
+「怕黑。」//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="797669683104448572" id="message-797669683104448572">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「怕黑……嗎？我知道了，那麼現在這個孩子在哪呢？我想我該去找他了。」
+聽到眼前女性的回答，我深吸了一口氣，並再度朝她提出了疑問。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797669798589759550" id="message-797669798589759550">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//問一下，我記得我自己的基本資訊嗎？</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="797669861521227787" id="message-797669861521227787">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「上去吧。」//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797669939229622282" id="message-797669939229622282">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//你記得自己的名字，但其他記不得了</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128076;" title="&#128076;" src="https://twemoji.maxcdn.com/2/72x72/1f44c.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="797670319120580648" id="message-797670319120580648">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「好的，那麼我就上去找他了，十分感謝您女士。」
+語畢，我對著她稍微鞠了躬，並邁開了步伐前往客廳那個往上的樓梯。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="797670453640167446" id="message-797670453640167446">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">通過一架木質的樓梯，你抵達了二樓。那是一條短短的昏暗走廊，左右側各有一道門，在走廊的盡頭也有一道門。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="797670930117689344" id="message-797670930117689344">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「請問你在這嗎？我如期來找你了」
+我輕輕的敲響了在我右側的門，確認小孩是否在裡面。//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 11:39 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="797671266189443104" id="message-797671266189443104">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你敲了敲門，無人應聲。
+這時模糊的印記突然顯現在門上，但一瞬間它旋轉蠕動，然後再次消失。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="797671732780597248" id="message-797671732780597248">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「欸？剛剛那個印記是？……所以這個門是可以打開的意思嗎？」
+看到眼前發生的神奇景象，我皺了皺眉頭，並嘗試轉開眼前的門把。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="797671883096457217" id="message-797671883096457217">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">門把沒有上鎖。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="797672158444126249" id="message-797672158444126249">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「嘶……哈……那麼我就進去了喔！」
+裡面無人應門，加上門把沒鎖，我做了一下心理準備，並打開了這扇門。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="797672245635448843" id="message-797672245635448843">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你推開了右側的門。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797672262387892245" id="message-797672262387892245">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">這是一個沒有光源的房間，僅僅有狹窄小窗外透出的絨毛般的光束。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797672311431233547" id="message-797672311431233547">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">一具具面容相似但年齡不同的屍體直挺挺的躺在黑色的地板上，他們有的被奪去四肢，有的則被攔腰斬斷，而另一些則以更加殘忍的手段被褻瀆摧毀，僅留下薄薄的皮，蜷縮在一起。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797672345769869314" id="message-797672345769869314">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">遇見死狀殘忍的屍體們。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797672356499816448" id="message-797672356499816448">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&lt;SC 1/1d4&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797672545909997578" id="message-797672545909997578">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">面對死狀慘烈的屍體，你一時難以自持，嚇了一大跳，陣陣的反胃感湧上喉頭。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="797673233914003516" id="message-797673233914003516">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「嘔……這到底是？這絕對不會是那個孩子會在的地方！」
+我摀住嘴巴讓反胃感不至於衝破喉嚨，並迅速的關起了房門，轉向另一頭的房門。深呼吸，並敲響了它。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="797673667261759598" id="message-797673667261759598">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你敲響了左側的房門，同樣無人應答，不過你似乎能聽見房裏有微弱的呼吸聲。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="797674422945185813" id="message-797674422945185813">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「……不好意思打擾了。」
+聽見房內有人存在的跡象，我嘗試轉開了門把確認房間內景象。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="797674532281385010" id="message-797674532281385010">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你打開門，房內有著微弱的燈光。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797674553303105583" id="message-797674553303105583">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在房間一隅一個嗅著鼻子的男孩捲著單薄的被單，一側微弱的壁燈在他被凍得通紅的面頰上留下模糊的陰影。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797674579584614431" id="message-797674579584614431">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">他緊咬著發白的嘴唇，目光一刻不停的盯著房門口右側的衣櫃；</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797674659133784075" id="message-797674659133784075">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">他甚至不敢去看你—不敢將目光從那個據他所說藏著怪物的衣櫃上移開，但他最終鼓足了勇氣，當他看向你的那一剎那，他哇的一聲哭了出來。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="797675192368627712" id="message-797675192368627712">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「我如約來到了，別怕哦。」
+我快步的走到那個男孩的身邊，將他擁入懷中，一邊拍著他的背來安撫他，一邊盯著剛剛他一直在看的那個衣櫃。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 11:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="797675629503709214" id="message-797675629503709214">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在你走近時，你能感覺到他因為恐懼正在發抖，他蜷縮在夜燈下，眼神顫抖。
+
+他在你的擁抱下漸趨平緩，半晌，他小聲開口道：「謝謝你，願意來到這裏陪伴我。」
+然後他稍稍和你拉開距離，緊抓著你的衣服，問：「你可以和我待在一起嗎，求求你了。」//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 12:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="797676566053781535" id="message-797676566053781535">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「如果情況允許的話，我可以稍微陪陪你無妨，然後在電話那頭我只顧著問你，都忘記介紹我自己了。我叫莫止，請多多指教。」
+我轉頭對將這段話傾訴給他，並對他笑了笑，之後再度轉頭望向那個衣櫃。輕輕的和他說
+「你說這個衣櫃有東西是吧？你知道是什麼東西嗎？」//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 12:02 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 12:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="797677164447137792" id="message-797677164447137792">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">眼前的男孩破涕為笑，「謝謝你，莫止哥哥。」
+「至於衣櫃......」
+男孩並沒有說下去，你能感覺到他又開始微微發抖起來。
+
+同時，衣櫃似乎回應般的開始輕輕地震顫。</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 12:05 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797677188014145548" id="message-797677188014145548">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&lt;聆聽&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797677363563069470" id="message-797677363563069470">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你聽到衣櫃木門的吱呀聲中有種指尖輕輕刮擦物體表面的噪音。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 12:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="797678124916539412" id="message-797678124916539412">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「聽起來不太妙啊，在衣櫃裡的那玩意……好好抓緊我，如果有什麼狀況我會立刻帶你離開這個房間。」
+我死死盯著眼前的衣櫃並將那個孩子抱了起來，做出隨時可以離開這個房間跑到樓下的準備。//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 12:08 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 12:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="797678485341470741" id="message-797678485341470741">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">衣櫃仍舊發出讓人膽寒的吱呀聲，刮撓的噪音愈演愈烈彷彿要將整座衣櫃撕成碎片。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797678501608030288" id="message-797678501608030288">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">也在這時，你感覺到肩膀以及頭頂有某種濕滑的觸感，</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797678547811958804" id="message-797678547811958804">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">當你抬起頭觀察時，你看到從天花板一角的黑暗處垂下來一束彼此糾纏的觸手正要攀上你的肩膀，黏稠惡臭的分泌物正順著你的髮絲滑進你的脖頸。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797678578124062756" id="message-797678578124062756">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&lt;SC 1/1d4&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797678683992227840" id="message-797678683992227840">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你覺得這些黏液令你有點不安。</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 12:10 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797678768595927040" id="message-797678768595927040">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在你轉頭觀察時，除了觸手本身，你也注意到這些污物的觸手刻意避開朦朧的夜燈，然而從天花板上不斷墜落的黏液碎肉一層層包裹住小小的夜燈，最終，在一陣帶著電花的劈啪聲後，房間裡唯一的光源便熄滅了。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 12:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="797679219957956648" id="message-797679219957956648">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「噁心的玩意，離我遠一點！」
+看到眼前的光景，我立刻抱著那孩子跑出那個房間前往樓下，並默默的將這些觸手打上疑似怕光的標記。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 12:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="797679715389276171" id="message-797679715389276171">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在你跑出房門時，你感受到令人不安的滑膩感正從身後和旁邊的房門傳出，似乎有甚麼正在蠢蠢欲動。
+
+果不期然，在你經過右側的房門時，觸手從中湧出對你發動了襲擊。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797679904480952360" id="message-797679904480952360">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&lt;閃避&gt;因為抱著小孩一個懲罰骰</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 12:15 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797680293120704542" id="message-797680293120704542">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//明骰</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 12:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="797680357923094538" id="message-797680357923094538">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//不好意思稍微等我一下，我去拿東西</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 12:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="797680424733507605" id="message-797680424733507605">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//好</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 12:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="797681853158653972" id="message-797681853158653972">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//不好意思，懲罰骰怎麼打來著？</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 12:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="797682054246563881" id="message-797682054246563881">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//+rj -1 技能 數值</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797682129503780884" id="message-797682129503780884">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//兩顆就-2如此類推</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797683308989120572" id="message-797683308989120572">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">觸手只是帶著試探性質揮了一下，你覺得被擊中的位置有點疼，但不影響行動。</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 12:29 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797683314303565856" id="message-797683314303565856">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">HP-1</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797683506711887872" id="message-797683506711887872">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你繼續往樓梯的方向前進，木質的樓梯在你激烈的步伐下搖搖欲墜，在你下樓途中，觸手重整旗鼓，又一次揮舞著朝你襲來。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797683679233179698" id="message-797683679233179698">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&lt;閃避&gt;因為在樓梯又抱著小孩，兩個懲罰骰</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="beast_split" title="beast_split" src="https://cdn.discordapp.com/emojis/689774016067928066.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="797684028933275679" id="message-797684028933275679">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">HP-6</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797684241445290004" id="message-797684241445290004">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">觸手重重地打在你的右肩上，你感受到了無比的疼痛，感覺快要脫臼了。差點把小孩摔倒在地。//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 12:33 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 12:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="797684939062509569" id="message-797684939062509569">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「該死的觸手們！就不要讓我拿到火之類的東西！」
+雖然被觸手打的痛到渾身顫抖，我依舊咬緊牙關，死死的抱著小孩跑向廚房，試圖帶著他找到蠟燭之類的東西來看能不能解除當下的困境。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 12:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="797685203748782111" id="message-797685203748782111">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你咬咬牙，忍著如火灼的疼痛繼續前進，踏上最後一節階梯時迎接你的只有或深或淺的黑暗。
+男孩仍舊緊緊的抓住你的衣領，彷彿你是唯一救命的稻草，然而黑暗中湧動的觸手也正是看準了這一刻對你再次發起襲擊。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797685369784238131" id="message-797685369784238131">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&lt;閃避&gt;兩個懲罰骰</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797685496159404043" id="message-797685496159404043">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//我得去吃飯，暫離一會</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 12:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="797685531424456724" id="message-797685531424456724">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//ok</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="797691402497687563" id="message-797691402497687563">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//我回來了~</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797691509293842452" id="message-797691509293842452">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">HP-1</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797691730857558026" id="message-797691730857558026">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">雖然不太痛，但觸手緊緊地纏著你，你感覺自己的身體被壓迫著，快要被碾成肉餅，你難以動彈，肺部的空氣正被強制排出，你覺得如果不快點掙脫的話，你會撐不下去。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797691754711089192" id="message-797691754711089192">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&lt;STR&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693052114173953" id="message-797693052114173953">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你使勁掙扎想要推開觸手，但觸手的力氣比你還要大，你沒能將觸手推開，因為疼痛，你放開了抱住孩子的手，男孩摔倒在地發出了吃痛的聲音。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693261799620628" id="message-797693261799620628">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">也許是因為剛剛的傷勢，疼痛感使你頭暈，觸手力氣之大加上暈眩感，使你一時失去了掙扎的動力。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693301008367666" id="message-797693301008367666">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你感受著身體在強壓之下逐漸麻木，觸手越收越緊，心臓與肺部似乎被捏緊，起伏逐漸變低，節奏變得緩慢，如同風中殘燭。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693335883087902" id="message-797693335883087902">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你身軀的溫度一點點地消退著，知覺隨著溫度流失逐漸流向虛空。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693358083801088" id="message-797693358083801088">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">是要離開了嗎？</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693379441197086" id="message-797693379441197086">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你在界乎生與死的空間似乎看見了甚麼如同電影快速播放著。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693541185880095" id="message-797693541185880095">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你想要看清，但眼睛卻像是蒙上了一層紗，你抬起手，卻沒能抹清半分。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693556210270250" id="message-797693556210270250">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在矇矓間，你似乎感覺到一絲熟悉的溫暖。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693591937482794" id="message-797693591937482794">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">但你的大腦處於渾沌之中，你無法理解也不想去理解到底發生了甚麼事。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693633779597352" id="message-797693633779597352">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">反正，都要結束了不是嗎？</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693666617065483" id="message-797693666617065483">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在奄奄一息間，你聽見誰的聲音呼喚著你。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693710170849320" id="message-797693710170849320">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">然後，你重重地摔到了地上。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693770094215168" id="message-797693770094215168">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在疼痛間，你勉強集中起視線，在你眼前，是方才在廚房和你對話的女子，她扯開了纏繞著你的觸手，空氣又重新灌入你的胸腔，你，似乎又活了過來。。</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 01:10 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693870484881438" id="message-797693870484881438">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在扯開的一瞬，周圍的觸手一擁而上，你眼睜睜的看著她被撕裂成小塊的帶著血水的冰渣。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797693892476010546" id="message-797693892476010546">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&lt;SC 1/1d6&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797694072269439056" id="message-797694072269439056">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&lt;偵察/聆聽&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797694307272097822" id="message-797694307272097822">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">目睹著她被撕裂的場景，你體會到一種無法忽視的失落與痛苦，總覺得心中少了些無可或缺的東西，而造成的空洞永遠無法填補。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797694340968218654" id="message-797694340968218654">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">觸手正大快朵頤，現在沒有觸手圍繞在你的附近。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="797694470027870209" id="message-797694470027870209">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//我血量-2了，請問單兵如何處置</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="797694538755866685" id="message-797694538755866685">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//單兵？</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797694591020826634" id="message-797694591020826634">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//你現在HP=1</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="797695256934088704" id="message-797695256934088704">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「咳咳！該死的……該死的！小傢伙，快點趕去廚房看看有沒有蠟燭！」
+我看見眼前的景象，不禁咬緊了牙根，雖然不知道這個人到底是誰，那失去重要之物的感覺深刻的打在我的腦海內，我一邊嘗試站起身前往廚房，一邊喊著體況尚且完好的孩子前去尋找。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="797695538400067616" id="message-797695538400067616">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">小男孩正蹲在地上發抖，你牽起他往廚房走。
+
+你推開了廚房門，此時的廚房籠罩在一層橙黃色的燈光下，來自天花板上沒有燈罩的燈泡在嘶嘶作響。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797695570067587082" id="message-797695570067587082">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">原本坐在圓桌上的四人只剩下一人。眼前這位陌生的女性安靜的坐在原處，燈光下結冰的皮膚還有青色的血管更加清晰。</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 01:17 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797695600837263420" id="message-797695600837263420">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">她似乎注意到了你，嘴角因為淺淺的笑意裂開帶血的裂痕，然後你的注意力落在了她面前的一根蠟燭與一把鑰匙上。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="797696117768060948" id="message-797696117768060948">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「這個蠟燭我能拿去用嗎？還有這個鑰匙是開哪個地方的？」
+我看見眼前的擺飾，強忍著痛意，努力將我想表達的言語透過牙齒間的縫隙傳達給對方。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="797696624884449280" id="message-797696624884449280">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「當然可以。」女性笑著對你說，「至於鑰匙，是用來開抽屜的。」
+你能看見在你的左手邊有一排灰色櫥櫃，在底下有三層抽屜，最底的一層有一個鎖孔。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="797697491071270943" id="message-797697491071270943">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「十分感謝您的給予，那麼這個蠟燭和鑰匙我就借走了！」
+聽聞那位女性的話語，我重重的鞠了躬，轉身將通往客廳的房門關上後，便拿起了桌上的蠟燭與鑰匙，帶著男孩一同到廚房尋找打火器與打開那個帶有鎖孔的抽屜。//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 01:25 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="797697767178633226" id="message-797697767178633226">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//你要連燭台拿還是只拿蠟燭</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="797697826036776970" id="message-797697826036776970">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//連燭台</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="797698155210473522" id="message-797698155210473522">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">蠟燭是一根普通的白色蠟燭，潔白的蠟芯未經火焰的熏撩。
+
+你拿起蠟燭與鑰匙，蹲在抽屜前。伴隨著「咔嚓」一聲，抽屜被你成功打開，裏面放著三根和你剛剛看見一模一樣的純白蠟燭，還有一個打火機。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="797699041462190140" id="message-797699041462190140">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">我拿起眼前的蠟燭將它放進外套口袋，然後蹲下對著那個男孩說
+「小傢伙，現在我打算靠著這些蠟燭來逃出這個地方，或許你會覺得很瘋狂，但這是我唯一能想到的方法了。如果你不願意跟著我一起做這麼瘋狂的行為，那麼我們可能就要在此分別了。如果你願意的話，那就準備好走了吧！」//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 01:31 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="797699643194343426" id="message-797699643194343426">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在你拿起蠟燭時，其中一根在被你拿起時碎成粉塵狀的冰渣，流過你的指縫散落一地。
+
+「我...我跟著你，不要丟下我......」男孩緊抓著你的衣袖。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="797700205742784543" id="message-797700205742784543">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">我頓了頓看了下掉在地板的冰渣，然後起身舉起剛剛連著燭台的蠟燭，走向了廚房通往客廳的門口前，回頭對著坐在那裡的女子說
+「謝謝您，希望我們不會有再相見的一天」//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 01:36 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="797700591555182603" id="message-797700591555182603">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">此時，門外傳來了觸手蠕動的詭異聲響，緊接著則是一些重物倒下的悶響。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797700609364590633" id="message-797700609364590633">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&lt;聆聽&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797700854021881896" id="message-797700854021881896">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你辨析出其中隱藏著的類似咀嚼啃食的聲音。
+&lt;SC 1/1d2&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797701066724605962" id="message-797701066724605962">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你聽見女子對你說：「把蠟燭點上吧，外面很黑。」</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 01:39 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797701127474511932" id="message-797701127474511932">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你也發現口袋似乎變輕了一點，一看，其中一根蠟燭碎成了粉塵狀的冰渣，本來外露的部分散落在地上。
+那種永恆的缺失感再一次烙印在你的心頭。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="797701665683406889" id="message-797701665683406889">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「謝謝您的提醒，這位女士，感謝我們之間的相見，然後……永遠不見」
+語畢，回頭看向眼前的房門並點燃手上帶有燭台的蠟燭，頭也不回的打開了它，帶著小傢伙一步步的靠著微弱的燭光，前往離開這個家的大門。//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 01:48 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="797701927080951818" id="message-797701927080951818">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你用打火機點燃了蠟燭，溫暖的燭光安撫了你的心。
+&lt;SAN 回復 1d5&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="797702201749405738" id="message-797702201749405738">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//我並沒有回頭看見這個景象，也要SC嗎？</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="797702292639186964" id="message-797702292639186964">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//emmm</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797702363468922910" id="message-797702363468922910">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//所以你是回頭再點蠟燭嗎</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797702391369039922" id="message-797702391369039922">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//我以為你點了再回</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="797702505907748896" id="message-797702505907748896">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//說完我的話，看向大門點蠟燭，然後帶著孩子打開房門出去</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="797702559032410133" id="message-797702559032410133">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//好喔，我刪掉</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="797702657975386134" id="message-797702657975386134">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//還是聽到後面的異聲，所以進行SC？</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="797702724472143911" id="message-797702724472143911">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//不會有聲音</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797702760925233202" id="message-797702760925233202">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//就隨她吧</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="797702784002424833" id="message-797702784002424833">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//好，那麼煩請KP繼續</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="797704240339353640" id="message-797704240339353640">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">但除了那一絲溫暖，你也感受到失落感與無法言說的絕望接踵而至。
+是從何而來的呢？
+明明，如今經歷的一切都是無比的陌生。
+就像是，誰，永遠消失在你的生命之中。
+明明應該是很重要的人，但你卻沒辦法為他送上自己的悲傷。
+因為，你連他是誰也不知道。
+你只能任由絕望感在你的心頭肆虐，無處可洩。
+是誰，到底是誰。
+但你永遠也不會得到答案了。
+那怕你獻上一切。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797704348834332673" id="message-797704348834332673">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在你打開門的一瞬，頭頂的燈泡碎裂，觸手在一瞬間湧入廚房，挾著磅礡的氣勢，似是要將一切撕裂殆盡。
+
+但是，
+
+觸手並沒有將你們淹沒撕碎，他們似是閃避著甚麼，只是包圍著你們，沒有進一步的行動。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="797704795049426945" id="message-797704795049426945">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「呵，果然是怕光嗎？千萬不要離開我太遠啊小傢伙」
+看著眼前尚未有進一步動作的觸手，我帶著小男孩在不會影響到燭光的速度下，前往大門前，試圖打開大門並逃出去。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="797704945767809034" id="message-797704945767809034">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">牽著男孩，你往屋外走，原本緊閉的門淺淺的開啟，門外的光線小心翼翼的閃爍。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797704968592949259" id="message-797704968592949259">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你把大門推開，逃出了這棟令人不安的房子。</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 01:57 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797704996295933953" id="message-797704996295933953">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">又一次，你將疲倦不堪的身體拋入這片夜色。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797705038750416896" id="message-797705038750416896">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">此時的夜色中的霧氣已經漸漸消退，你發現自己身處一個非常熟悉的街道，微弱的燭光將自己和男孩包裹，但你也很清楚更多的潛藏在黑暗中的觸手異形仍在伺機而動。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797705068173983754" id="message-797705068173983754">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">街道的遠處正閃爍著一些絨毛狀光線。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797705086179606528" id="message-797705086179606528">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&lt;偵察&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797705320386002966" id="message-797705320386002966">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你注意到那些絨毛狀光線並非是什麼街燈霓虹，而是懸浮在半空中的一隻隻巨大的眼睛。這些眼睛飽含淚光，時不時地眨動，眼淚在墜落中途消失。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797705345271070741" id="message-797705345271070741">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">不知為何，你並不認為這些眼睛嚇人，反而升起了一絲熟悉感和溫暖。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 01:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="797706114065367070" id="message-797706114065367070">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「呵呵，我想現在有什麼東西出現我都不感到意外了，走吧小傢伙，我想我們前進的唯一指標就是那些神奇的玩意了…」
+語畢，便讓小男孩拉著自己的衣擺，把手空出來掏出另一隻蠟燭，以防現在這支燒完，並開始朝向那些眼睛的地方前行。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 02:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="797706530812067880" id="message-797706530812067880">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在你想要拿出另一隻蠟燭時，你發現，蠟燭不知何時在你的口袋裏已陸續碎成粉塵狀的冰渣。
+
+你往眼睛的方向走去，眼前的道路看似沒有盡頭，你走了許久，似乎沒有和眼睛收窄一點距離。</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 02:02 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797706574344355840" id="message-797706574344355840">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">沒有出路的前進只是單純消耗你的體力，手中蠟燭的火光也因顛簸而殘喘不定，眼看就要泯滅。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797706632963424256" id="message-797706632963424256">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在這時，遠處洶湧的黑暗開始躁動起伏，而所有閃著淚光的眼睛像是被一隻看不見的刀刃刺穿。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797706701242892299" id="message-797706701242892299">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">男孩下意識的將你抱緊，你仍舊能聽見他強忍的嗚咽聲無助可憐，而下一秒你能感覺到黑暗以及藏在黑暗中的觸手怪物湧向天邊的某處，或者說被什麼東西吸納而去。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797706752694288384" id="message-797706752694288384">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">緊接著你看見在黑暗最為深厚的那一點，綻放出了一輪明亮的光暈，彷彿初生的太陽。
+然而在這輪光暈的中心湧出一個類人的黑影。</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 02:01 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797706814258151454" id="message-797706814258151454">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你只能意識到那是一個輪廓泛著微光的人類剪影。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797706850094678056" id="message-797706850094678056">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">這個剪影似乎穿著飄逸的長袍，頭頂戴著某種高聳鋒利的王冠。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797706869568700436" id="message-797706869568700436">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">深處細長的手臂指了指男孩又指了指你，最終對你們攤平手掌。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797706908571926529" id="message-797706908571926529">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「選擇。」 一個聲音在你腦海深處響起。「留下的人將會醒來。」//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 02:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="797707317608710204" id="message-797707317608710204">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「選擇嗎？」
+我無奈的笑了笑，蹲下了身子看向了眼前的小男孩，輕聲的問他說
+「小傢伙，你願意尊重我的選擇嗎？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 02:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="797707552304398417" id="message-797707552304398417">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「我相信你。」小男孩堅定地回答你，他雖然眼泛淚光，但眼底是不符合這個年紀所有的堅定神情。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 02:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="797707911874347029" id="message-797707911874347029">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「謝啦，小傢伙」
+我站起身子來，對著眼前的黑影說道
+「我的選擇已經出來了。」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797708101100240896" id="message-797708101100240896">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「如果你是人，那麼你無法決定我們兩個的命運，倘若你是執掌命運的神明的話……」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797709017916375070" id="message-797709017916375070">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">我露出了自大且狂妄的猙獰笑容
+「那我只好叛逆這既有的命運了！所以你給的選項我都不會選的！真是不好意思啊！神明大人！（悪いな！神様！）」//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 02:15 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 02:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="797709995805900800" id="message-797709995805900800">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">面對選擇，你選擇了拒絕，沒有人能決定你的命運。
+那怕是神明在前，你也未曾動搖半分。
+為甚麼要順從別人的說話，才不要如它所願。
+它不配左右你的人生。
+
+話音剛落，
+黑影發出刺耳恐怖的尖嘯，無數的觸手在一瞬間噴湧而來。
+&lt;SC 1d4/1d20&gt;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797710291185434625" id="message-797710291185434625">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">你在被觸手刺穿撕扯的痛覺中失去意識。</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797710297292210177" id="message-797710297292210177">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797710302836948993" id="message-797710302836948993">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">..</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797710312357756928" id="message-797710312357756928">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797710669985611798" id="message-797710669985611798">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">在漫長的迷離後，你醒來了。
+似乎是躺在病床上，左右兩側站著你不認識的人。
+一個身穿護士服的男性看見你醒來了說：「啊，你醒來了。 請不要亂動，我去請醫生過來。」然後他便轉身走出了病房。//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 02:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="797711061917761567" id="message-797711061917761567">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">看著眼前純白的天花板和身旁陌生的人士，我不經發出了第二次的詢問
+「這裡是哪裡？」</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="797711119060828160" id="message-797711119060828160">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「你們是誰？」//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 02:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="797711735460069386" id="message-797711735460069386">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">一名年輕女性湊了上來，「你醒來實在是太好了。」她露出了一個安心的笑容，在聽見你的問題後她愣了愣又道：「我是莫玥啊，還有愛麗絲。你不認得了嗎？」//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 02:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="797712412814999592" id="message-797712412814999592">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">聽到對方提起的名字，我不禁開了開口，分明對於眼前的人有那麼一點印象，但這些殘片馬上就宛如掛在樹上的秋葉一般，隨風飄逝。
+「抱歉呢，現在的我實在想不起你們是誰，但想必你們之於我而言，應該是很親近的人吧……」//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 02:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="797713196084494346" id="message-797713196084494346">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">女性看起來有點失落，但又很快重新掛上了笑容，
+「沒關係，你能醒就已經是天大的好事了。至於記憶，往後等你康復再說吧。我們不急。」
+
+這時，醫生進來了並對你進行一番檢查，「你的精神和身體都處在崩潰的邊緣，先好好休養不要下床，不過也不用擔心，都會好起來的。經歷了這種事，能活下來就很好了。」//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 02:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="797714049244332042" id="message-797714049244332042">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「謝謝您，醫生。聽到這個消息真是令我開心。」
+聽聞醫生的說明，我不禁鬆了一口氣，然後轉頭看向身旁的那位女性
+「……莫玥小姐是吧，我能請教一下，您和我有著類似的名字，您是我的……親人嗎？」//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/418262009591758849/6fb690629608e7aa7c8e403a01ac572f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="醫生不是醫生#5745" data-user-id="418262009591758849" style="color: rgb(223,255,223)">醫生—哈士奇型maru彩虹生產機</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 02:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="797714535154188288" id="message-797714535154188288">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「我是你的親妹妹喔，至於愛麗絲，是我們的義妹。」莫玥指了指愛麗絲。
+那位被稱作愛麗絲的女生也點點頭，「就和莫玥姐姐說的一樣。」//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/475951204523049000/b5f5f24c5692d00679021bf0ac62f71c.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="鹹魚喵#7123" data-user-id="475951204523049000" style="">克莉絲(鹹魚喵)</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-21 02:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="797715189260091392" id="message-797715189260091392">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">「是嗎？」
+看著眼前的女性，我柔和的笑了笑。
+「雖然你家哥哥現在想不起來我們過去的記憶，但我想透過當下的陪伴再來創造嶄新的回憶，好像也不遲吧？如果你們願意，是否能繼續陪伴我這個忘記你們的哥哥呢？我兩位可愛的妹妹？」//</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jan-21 02:36 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 220 message(s)</div>
+</div>
+
+</body>
+
+</html>
